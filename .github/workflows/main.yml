@@ -35,5 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
         env:
-            SURGE_LOGIN: ${{secrets.SURGE_LOGIN}}
-            SURGE_TOKEN: ${{secrets.SURGE_TOKEN}}
+            MYSQL_HOST: ${{secrets.MYSQL_HOST}}
+            MYSQL_USER: ${{secrets.MYSQL_USER}}
+            MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD }}
+            MYSQL_DB: ${{secrets.MYSQL_DB}}

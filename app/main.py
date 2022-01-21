@@ -34,7 +34,7 @@ def login():
     if request.method == 'POST':
 
         cur = mysql.connection.cursor()
-        login.username = request.form['username']
+        username = request.form['username']
         statement = f"SELECT username from users WHERE username='{login.username}' AND Password = '{request.form['password']}';"
         cur.execute(statement)
         if not cur.fetchone():

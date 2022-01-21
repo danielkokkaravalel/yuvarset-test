@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
-# Database connection
+# Database connection through heroku
 app.config["DEBUG"] = True
 app.config["MYSQL_HOST"] = os.environ.get('MYSQL_HOST')
 app.config["MYSQL_USER"] = os.environ.get('MYSQL_USER')

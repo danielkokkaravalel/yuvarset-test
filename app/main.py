@@ -13,13 +13,14 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 # Database connection through heroku
 app.config["DEBUG"] = True
-app.config["MYSQL_HOST"] = "sql6.freemysqlhosting.net"
-app.config["MYSQL_USER"] = "sql6468111"
-app.config["MYSQL_PASSWORD"] = "qTZs7J6xij"
-app.config["MYSQL_DB"] = "sql6468111"
-app.config["MYSQL_CURSORCLASS"] = "DictCursor"
-mysql = MySQL(app)
+app.config['MYSQl_DATABASE_URI'] = 'mysql2://sql6468111:qTZs7J6xij@sql6.freemysqlhosting.net/sql6468111'
+#app.config["MYSQL_HOST"] = "sql6.freemysqlhosting.net"
+#app.config["MYSQL_USER"] = "sql6468111"
+#app.config["MYSQL_PASSWORD"] = "qTZs7J6xij"
+#app.config["MYSQL_DB"] = "sql6468111"
+#app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
+mysql = MySQL(app)
 
 # html pages connection
 @app.route('/', methods=['GET', 'POST'])
@@ -85,3 +86,14 @@ def mailPass():
             smtp.send_message(msg)
 
         return  render_template("forgot.html",msg = 'Login details sent succesfully. Click to Login')
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    try:
+        con = mysql.connection
+        cur = con.cursor()
+        cur.execute("SELECT * from users")
+        data = cur.fetchall()
+        return render_template("table.html", data=data)
+    except Exception as e:
+        return (str(e))

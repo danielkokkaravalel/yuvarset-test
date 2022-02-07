@@ -1,0 +1,13 @@
+<table border="1" cellpadding="5" cellspacing="5">
+    {% for row in data %}
+        <tr>
+            <td>{{row.username}}</td>
+            <td>{{row.password}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.branch}}</td>
+            <td>{{row.events}}</td>
+            <td>{{row.points}}</td>
+        </tr>
+    {% endfor %}
+</table>

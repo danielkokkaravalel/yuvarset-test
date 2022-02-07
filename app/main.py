@@ -13,12 +13,11 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 # Database connection through heroku
 app.config["DEBUG"] = True
-app.config['MYSQl_DATABASE_URI'] = 'mysql2://sql6468111:qTZs7J6xij@sql6.freemysqlhosting.net/sql6468111'
-#app.config["MYSQL_HOST"] = "sql6.freemysqlhosting.net"
-#app.config["MYSQL_USER"] = "sql6468111"
-#app.config["MYSQL_PASSWORD"] = "qTZs7J6xij"
-#app.config["MYSQL_DB"] = "sql6468111"
-#app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+app.config["MYSQL_HOST"] = "sql6.freemysqlhosting.net"
+app.config["MYSQL_USER"] = "sql6468111"
+app.config["MYSQL_PASSWORD"] = "qTZs7J6xij"
+app.config["MYSQL_DB"] = "sql6468111"
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 mysql = MySQL(app)
 

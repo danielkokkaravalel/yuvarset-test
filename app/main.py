@@ -13,11 +13,11 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 # Database connection through heroku
 app.config["DEBUG"] = True
-app.config["MYSQL_HOST"] = "sql6.freemysqlhosting.net"
-app.config["MYSQL_USER"] = "sql6468111"
-app.config["MYSQL_PASSWORD"] = "qTZs7J6xij"
-app.config["MYSQL_DB"] = "sql6468111"
-app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+app.config["MYSQL_HOST"] = 'localhost'
+app.config["MYSQL_USER"] = 'root'
+app.config["MYSQL_PASSWORD"] = ''
+app.config["MYSQL_DB"] = 'yuva'
+app.config["MYSQL_CURSORCLASS"] = 'DictCursor'
 
 mysql = MySQL(app)
 
@@ -38,12 +38,14 @@ def login():
 
         cur = mysql.connection.cursor()
         login.username = request.form['username']
-        statement = f"SELECT username from users WHERE username='{login.username}' AND Password = '{request.form['password']}';"
+        statement = f"SELECT * from users WHERE username = '{login.username}' AND password = '{request.form['password']}';"
         cur.execute(statement)
-        if not cur.fetchone():
+        if not cur.fetchall():
             error = 'Invalid username or password. Please try again!'
-
         else:
+            rows = cur.fetchall()
+            print(statement)
+            print(rows)
             flash('You were successfully logged in')
             return redirect(url_for('user'))
 
@@ -56,6 +58,7 @@ def user():
     cur = con.cursor()
     cur.execute(f"SELECT * from users WHERE username = '{login.username}'")
     rows = cur.fetchall()
+    print(rows)
     return render_template("user.html", rows=rows)
 
 @app.route('/forgot')
